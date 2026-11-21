@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Coast Cover Studio</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <header>
+      <h1>VICE COAST</h1>
+      <p class="tag">Cover Studio — any photo, poster art, PNG in seconds.</p>
+    </header>
+
+    <section class="group">
+      <h2>Photos</h2>
+      <label class="file">Add your photos
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <div class="row">
+        <button id="sampleBoulevard" type="button">Load sample: Boulevard</button>
+        <button id="samplePier" type="button">Load sample: Pier</button>
+      </div>
+      <p class="hint">Photos stay on your device — nothing is uploaded.</p>
+    </section>
+
+    <section class="group">
+      <h2>Panel <span id="panelLabel">Panel 1 of 9</span></h2>
+      <p class="hint">Click a panel in the preview to select it, drag to move its photo.</p>
+      <label>Photo in this panel
+        <select id="panelPhoto"></select>
+      </label>
+      <label>Zoom <span id="zoomVal">100%</span>
+        <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1">
+      </label>
+      <label>Fit
+        <select id="fit">
+          <option value="fill" selected>Fill panel</option>
+          <option value="fit">Fit whole photo</option>
+        </select>
+      </label>
+      <div class="row">
+        <button id="allPanels" type="button">One photo for all panels</button>
+        <button id="resetPanel" type="button">Reset panel</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Layout</h2>
+      <div class="row seg">
+        <button type="button" data-layout="grid">Cover Grid</button>
+        <button type="button" data-layout="duo">Hero Duo</button>
+        <button type="button" data-layout="single">Single Hero</button>
+      </div>
+      <h2>Grade</h2>
+      <div class="row seg">
+        <button type="button" data-grade="sunset">Sunset</button>
+        <button type="button" data-grade="neon">Neon Night</button>
+        <button type="button" data-grade="pastel">Pastel Vice</button>
+      </div>
+      <h2>Export size</h2>
+      <div class="row seg">
+        <button type="button" data-size="square">1080 × 1080</button>
+        <button type="button" data-size="portrait">1080 × 1350</button>
+        <button type="button" data-size="landscape">1920 × 1080</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Caption</h2>
+      <label>Title — up to 3 lines
+        <textarea id="title" rows="3" maxlength="60">VICE COAST</textarea>
+      </label>
+      <div class="row chips">
+        <button type="button" data-caption="VICE COAST">Vice Coast</button>
+        <button type="button" data-caption="SUNSET HEIST">Sunset Heist</button>
+        <button type="button" data-caption="BOULEVARD QUEEN">Boulevard Queen</button>
+        <button type="button" data-caption="NEON TIDE">Neon Tide</button>
+        <button type="button" data-caption="PIER PRESSURE">Pier Pressure</button>
+      </div>
+      <label>Tagline
+        <input id="tagline" type="text" maxlength="40" value="A LEONIDA STORY">
+      </label>
+      <label>Title size <span id="titleSizeVal">85%</span>
+        <input id="titleSize" type="range" min="50" max="140" step="5" value="85">
+      </label>
+    </section>
+
+    <section class="group actions">
+      <button id="randomise" type="button">Randomise</button>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </section>
+
+    <footer>
+      <p>Offline app — no network, no account, no upload. Fonts: Anton (SIL OFL, bundled).</p>
+    </footer>
+  </section>
+
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="920" height="920" aria-label="The cover preview"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

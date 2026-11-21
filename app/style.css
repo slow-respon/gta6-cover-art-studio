@@ -1,0 +1,90 @@
+/* Vice Coast Cover Studio — dark neon editor UI. Display type is Anton,
+   bundled under ./fonts/ (SIL Open Font License); the UI itself uses the
+   system sans so the editor stays light and fast. */
+
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #12081f;
+  --panel: #1d1030;
+  --panel2: #261640;
+  --ink: #f5eefc;
+  --muted: #b9a8d6;
+  --line: #3a2358;
+  --pink: #ff2d78;
+  --cyan: #00e5ff;
+  --amber: #ffb347;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, sans-serif; }
+
+.app { display: flex; gap: 0; height: 100vh; overflow: hidden; }
+
+.controls {
+  width: 340px; flex: 0 0 340px; height: 100vh; overflow-y: auto;
+  padding: 14px 14px 20px; background: var(--panel);
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.controls header h1 {
+  margin: 0; font-family: 'Anton', 'Arial Narrow', sans-serif;
+  font-size: 28px; letter-spacing: 1px; line-height: 1;
+  background: linear-gradient(90deg, var(--amber), var(--pink), var(--cyan));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.controls header .tag { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+
+.group { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; }
+.group h2 { margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
+.group h2 span { color: var(--cyan); text-transform: none; letter-spacing: 0; font-size: 12px; }
+
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 13px; }
+label span { font-weight: 400; color: var(--cyan); }
+input[type=text], textarea, select {
+  font: inherit; color: var(--ink); background: var(--bg);
+  padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px;
+}
+textarea { resize: vertical; font-family: 'Anton', 'Arial Narrow', sans-serif; font-size: 18px; letter-spacing: 1px; }
+input[type=range] { accent-color: var(--pink); }
+input[type=file] { font: inherit; }
+
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.row > button { flex: 1 1 auto; }
+
+button {
+  font: inherit; font-weight: 700; padding: 7px 9px; border: 1px solid var(--line);
+  border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer;
+}
+button:hover { border-color: var(--pink); }
+button.active { background: var(--pink); border-color: var(--pink); color: #fff; }
+button.primary { background: linear-gradient(90deg, var(--pink), #ff7a18); border: 0; color: #fff; font-size: 16px; padding: 12px; }
+button.primary:hover { filter: brightness(1.1); }
+.chips button { font-size: 12px; padding: 6px 8px; }
+.seg button { padding: 8px 6px; font-size: 13px; }
+
+.file { cursor: pointer; }
+.hint { margin: 0; color: var(--muted); font-size: 12px; font-weight: 400; }
+#status { margin: 0; color: var(--cyan); font-size: 13px; min-height: 18px; }
+footer p { margin: 0; color: var(--muted); font-size: 12px; }
+
+.stage { flex: 1; display: flex; align-items: center; justify-content: center; padding: 28px; min-width: 0; }
+.stage canvas {
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--line);
+  border-radius: 4px; cursor: grab; touch-action: none;
+}
+.stage canvas:active { cursor: grabbing; }
+
+/* Deterministic cover shot: the canvas alone, full-bleed. */
+body.shot-cover { overflow: hidden; }
+body.shot-cover .controls { display: none; }
+body.shot-cover .app { display: block; height: 100vh; padding: 0; }
+body.shot-cover .stage { display: block; padding: 0; }
+body.shot-cover canvas { width: 100vw; height: 100vh; max-width: none; max-height: none; box-shadow: none; border-radius: 0; }
